@@ -28,9 +28,11 @@ st.write("Enter your details below to predict calorie consumption.")
 # Input fields with improved labels and better user experience
 age = st.number_input("Age (years)", min_value=1, max_value=100, step=1)
 gender = st.radio("Gender", ["Male", "Female"])  # Using radio buttons instead of dropdown
-height = st.number_input("Height (cm)", min_value=50, max_value=250, step=1)
-heart_rate = st.number_input("Heart Rate (bpm)", min_value=40, max_value=200, step=1)
-temp = st.number_input("Body Temperature (°C)", min_value=30.0, max_value=45.0, step=0.1)
+height = st.number_input("Height (cm)", min_value=110, max_value=240, step=1)
+Weight = st.number_input("Weight (Kg)", min_value=30, max_value=140, step=1)
+Duration = st.number_input("Duration (Min)", min_value=1, max_value=45, step=1)
+heart_rate = st.number_input("Heart Rate (bpm)", min_value=55, max_value=140, step=1)
+temp = st.number_input("Body Temperature (°C)", min_value=36.5, max_value=43, step=0.1)
 
 # Convert gender to numerical value (Male=0, Female=1)
 gender_val = 0 if gender == "Male" else 1
@@ -38,7 +40,7 @@ gender_val = 0 if gender == "Male" else 1
 # Make prediction
 if st.button("🔍 Predict Calories"):
     try:
-        features = np.array([[gender_val, age, height, heart_rate, temp]])
+        features = np.array([[gender_val, age, height,Weight,Duration, heart_rate, temp]])
         features_scaled = scaler.transform(features)
         prediction = model.predict(features_scaled)
         st.success(f"📊 Predicted Calorie Consumption: {prediction[0]:.2f} kcal")
