@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #007BFF, #00C6FF);
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+
+        /* Animated Background */
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #007BFF, #00C6FF);
+            }
+            50% {
+                background: linear-gradient(135deg, #FF7EB3, #FF758C);
+            }
+            100% {
+                background: linear-gradient(135deg, #42E695, #3BB2B8);
+            }
+        }
+
+        /* Container Styling */
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            max-width: 600px;
+            text-align: center;
+            border: 4px solid #007BFF;
+            transition: border-color 0.5s ease-in-out;
+        }
+
+        /* Changing border color over time */
+        @keyframes borderAnimation {
+            0% { border-color: #007BFF; }
+            50% { border-color: #FF758C; }
+            100% { border-color: #42E695; }
+        }
+
+        .container {
+            animation: borderAnimation 10s infinite alternate;
+        }
+
+        /* Heading Styles */
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #007BFF;
+            margin-top: 20px;
+        }
+
+        /* List Styling */
+        ul {
+            text-align: left;
+            display: inline-block;
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 6px;
+            border-left: 6px solid #007BFF;
+        }
+
+        /* Button Styling */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ prediction_text }}</h2>
+
+        <h3>Inputs Given:</h3>
+        <ul>
+            {% for key, value in user_inputs.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>
