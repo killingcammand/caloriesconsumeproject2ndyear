@@ -32,7 +32,7 @@ height = st.number_input("Height (cm)", min_value=110, max_value=240, step=1)
 Weight = st.number_input("Weight (Kg)", min_value=30, max_value=140, step=1)
 Duration = st.number_input("Duration (Min)", min_value=1, max_value=45, step=1)
 heart_rate = st.number_input("Heart Rate (bpm)", min_value=55, max_value=140, step=1)
-temp = st.number_input("Body Temperature (°C)", min_value=36.5, max_value=43, step=0.1)
+temp = st.number_input("Body Temperature (°C)", min_value=36.5, max_value=43.0, step=0.1)
 
 # Convert gender to numerical value (Male=0, Female=1)
 gender_val = 0 if gender == "Male" else 1
@@ -43,7 +43,8 @@ if st.button("🔍 Predict Calories"):
         features = np.array([[gender_val, age, height,Weight,Duration, heart_rate, temp]])
         features_scaled = scaler.transform(features)
         prediction = model.predict(features_scaled)
-        st.success(f"📊 Predicted Calorie Consumption: {prediction[0]:.2f} kcal")
+        predicted_calories = max(0, prediction[0])
+        st.success(f"📊 Predicted Calorie Consumption: {predicted_calories:.2f} kcal")
     except Exception as e:
         st.error(f"An error occurred: {str(e)}")
 
